@@ -95,7 +95,7 @@ public class GameSession {
 		
 		if(checkCompatbility(Tryout)) {
 			TheWord=Tryout;
-			System.out.println("The Game Has finished With success !!!");
+			System.out.println("The Game Has finished With success !!!,the word was : "+TheWord);
 			
 			setGame_WIN_Status(true);
 			
@@ -132,14 +132,14 @@ public class GameSession {
 		}
 		if(checkCompatbility(TheWord)) {
 			
-			System.out.println("The Game Has finished With success !!!");
+			System.out.println("The Game Has finished With success !!!,the word was : "+TheWord);
 			
 			setGame_WIN_Status(true);
 			
 			
 			return;}
 		
-		System.out.println(TheWord);
+		System.out.println("You are at : "+TheWord);
 		
 		}
 	

@@ -5,29 +5,68 @@ import java.util.Scanner;
 public class HangmanTest {
 
 	public static void main(String[] args) {
-		Person p1=new Person("ACHRAF","SAADALI");
-		p1.setGame();
-		GameSession g1=p1.getGame();
-		System.out.println(g1.getWordToGuess());
+		Person p1 = new Person("ACHRAF", "SAADALI");
+	    Scanner sc=new Scanner(System.in);
+       while(true) {
+    	   String m=WannaPlay(sc).toLowerCase();
+    	   if(!(m.equals("y") || m.equals("yes"))) {
+    		   System.out.println("GoodBye....");
+    		   break;}
+		play(p1,sc);
 		
-		Scanner scan =new Scanner(System.in);
-		while(g1.getTrials_left()!=-1) {
-			System.out.println("You are at : "+g1.getTheWord());
-			System.out.println("Guess The Word : (A Letter Or Full Word)");
-			String PlayerGuess=scan.nextLine();
-			g1.changeTheWord(PlayerGuess);
-			if(g1.isGame_WIN_Status())
-				break;
-			
-			
-			
-		}
-		scan.close();
-		if(g1.getTrials_left()==-1)
-			System.out.println("GameOver: "+p1.getFirst_Name()+" "+p1.getLast_Name()+" you have exhausted your trials and lost  ");
-		
-		
-
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       }  
+       sc.close();
 	}
 
+	public static void play(Person P,Scanner scan) {
+		P.setGame();
+		GameSession G = P.getGame();
+		
+		
+		
+		if(P.getGames_Count()==1)
+			System.out.println("Welcome : Let's start with a new Game 	,Your Word is : "+G.getWordToGuess());
+		else {
+			System.out.println("Let's Continue.......Your Word is : "+G.getWordToGuess());
+		}
+		
+
+		while (G.getTrials_left() != -1) {
+			
+			System.out.println("Guess The Word : (A Letter Or Full Word)");
+			String PlayerGuess = scan.nextLine().toLowerCase();
+
+			G.changeTheWord(PlayerGuess);
+
+			if (G.isGame_WIN_Status()) {
+				System.out.println("Congrats : " + P.getFirst_Name() + " " + P.getLast_Name() + " have won !!!");
+				break;
+			}
+		}
+
+		if (G.getTrials_left() == -1) {
+			System.out.println("Game Over: " + P.getFirst_Name() + " " + P.getLast_Name() + ", you have exhausted your trials and lost.");
+		}
+
+		
+	}
+	public static String  WannaPlay(Scanner sc) {
+		
+		System.out.println("Wanna Play (Y/N): ");
+		String m=sc.nextLine();
+		
+		return m;
+		
+		
+	}
 }
