@@ -27,7 +27,7 @@ public class GameSession {
 	
 	
 	static {
-		try(BufferedReader FileWord=new BufferedReader(new FileReader("C:\\Users\\achra\\Downloads\\words.txt"))){
+		try(BufferedReader FileWord=new BufferedReader(new FileReader("words.txt"))){
 			All_Words=FileWord.lines().filter(line->line.length()>=3).collect(Collectors.toList());
 		}catch(IOException e) {
 			System.err.println("An error has occured when opening this file...");
