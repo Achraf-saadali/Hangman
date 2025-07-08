@@ -92,6 +92,7 @@ public class GameSession {
 		 return PlayerWordGuess.equals(WordToGuess); }
 	 
 	public void changeTheWord(String Tryout) {
+		boolean Letter_Guess=false;
 		
 		if(checkCompatbility(Tryout)) {
 			TheWord=Tryout;
@@ -118,6 +119,7 @@ public class GameSession {
 			char TheWord_Letter=TheWord.charAt(i);
 			
 			if(WordToGuess_Letter==Try) {
+				Letter_Guess=true;
 				sb.append(Tryout);}
 			
 			else {
@@ -130,6 +132,9 @@ public class GameSession {
 		if(!TheWord.contains(Tryout)) {
 			setTrials_left();
 		}
+		if(!Letter_Guess)
+			{System.out.println("Wrong Guess.....");return;}
+		
 		if(checkCompatbility(TheWord)) {
 			
 			System.out.println("The Game Has finished With success !!!,the word was : "+TheWord);
