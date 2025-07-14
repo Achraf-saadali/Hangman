@@ -18,7 +18,7 @@ public class QuestionHint{
 	
 	private HttpResponse<String> response;
 	
-	private int CountHint;
+	
 	
 	public QuestionHint(String word) {
 		
@@ -83,15 +83,6 @@ public class QuestionHint{
 
 
 
-	public int getCountHint() {
-		return CountHint;
-	}
-
-
-
-	public void setCountHint(int countHint) {
-		CountHint = countHint;
-	}
 	
 	
 	
