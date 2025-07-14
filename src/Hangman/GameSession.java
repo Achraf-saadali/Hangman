@@ -24,6 +24,8 @@ public class GameSession {
 	
 	private boolean Game_WIN_Status=false;
 	
+	private QuestionHint Questionhint;
+	
 	
 	
 	static {
@@ -41,6 +43,8 @@ public class GameSession {
 	public GameSession() {
 		setId(++count);
 		setWordToGuess();
+		setQuestionhint(new QuestionHint(this.getWordToGuess()));
+		
 	}
 	public  String getWordToGuess() {
 		return WordToGuess;
@@ -52,17 +56,9 @@ public class GameSession {
 		int WordLine=rand.nextInt(0,All_Words.size());
 		
 		WordToGuess=All_Words.get(WordLine);
-		setTheWord(WordToGuess.length());
+		setTheWord(WordToGuess.length());}
 		
-	     	
-		
-		
-		
-		
-			
-			
-		
-	}
+	
 	
 	
 	public int getId() {
@@ -163,6 +159,14 @@ public class GameSession {
 
 	public void setTrials_left() {
 		Trials_left -=1;
+	}
+	public String getQuestionHint() {
+		return Questionhint+"";
+	}
+
+	
+	public void setQuestionhint(QuestionHint questionhint) {
+		Questionhint = questionhint;
 	}
 		
 			
