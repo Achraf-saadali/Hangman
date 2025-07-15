@@ -21,7 +21,7 @@ public class QuestionHint{
 	
 	private BodyReq bodyrequest;
 	
-	private static final String  API_KEY="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";
+	private static final String  API_KEY="";
 	
 	private  HttpResponse<String> response;
 	
