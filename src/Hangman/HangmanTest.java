@@ -90,6 +90,7 @@ public class HangmanTest {
 				System.out.println("Do you like a hint say yes if you want it ");
 				
 				
+				
 				String HintAnswer=scan.nextLine().toLowerCase();
 				
 				if(HintAnswer.equals("yes")) {
@@ -100,9 +101,10 @@ public class HangmanTest {
 		}
 
 		if (G.getTrials_left() == 0) {
-			System.out.println("Game Over: " + P.getFirst_Name() + " " + P.getLast_Name() + ", you have exhausted your trials and lost. your word was "+G.getWordToGuess());
+			System.out.print("Game Over: " + P.getFirst_Name() + " " + P.getLast_Name() + ", you have exhausted your trials and lost. your word was : ");
+			System.err.println(G.getWordToGuess().toUpperCase());
 		}
-		System.out.println("TRIALS LEFT : "+G.getTrials_left());
+		
 
 		
 	}

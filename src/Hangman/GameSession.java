@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
-public class GameSession {
+public class GameSession  {
 	private static List<String> All_Words;
 	
 	 private static int Trials_Max=5;
@@ -70,7 +70,7 @@ public class GameSession {
 		TheWord=SB.toString();
 		
 	}
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 	
@@ -158,7 +158,7 @@ public class GameSession {
 		 if(!Guess_Is_Right) {
 			 setTrials_left(); 
 			 System.err.println("Wrong Guess.... Try again");
-			 System.out.println(getTrials_left());
+			 
 			 
 		 }
 		 
