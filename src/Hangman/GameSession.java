@@ -116,6 +116,7 @@ public class GameSession {
 		 
 		 }
 		 String GuessedWord=getTheWord();
+		 int n=getTheWord().length();
 		 BuildGuessedWord.append(GuessedWord);
 		 if(GuessedWord.contains(Input))
 		 {Guess_Is_Right=true;System.out.println("Already Guessed Try again......");
@@ -126,7 +127,20 @@ public class GameSession {
 			 Guess_Is_Right=true;
 			 
 			 char InputChar=Input.charAt(0);
-			 BuildGuessedWord.setCharAt(getWordToGuess().indexOf(Input), InputChar);
+			 for(int i=0;i<n;i++) {
+				 
+				if(getWordToGuess().charAt(i)==InputChar) {
+					BuildGuessedWord.setCharAt(i, InputChar);
+					
+					
+				}
+				 
+				 
+				 
+				 
+				 
+				 
+			 }
 			 setTheWord(BuildGuessedWord.toString());
 			 
 			 if(checkCompatbility(getTheWord())) {

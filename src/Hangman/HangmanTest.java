@@ -88,6 +88,8 @@ public class HangmanTest {
 			
 			if(!AnsweredHint && G.getTrials_left()<=2) {
 				System.out.println("Do you like a hint say yes if you want it ");
+				
+				
 				String HintAnswer=scan.nextLine().toLowerCase();
 				
 				if(HintAnswer.equals("yes")) {

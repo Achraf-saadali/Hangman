@@ -21,7 +21,7 @@ public class QuestionHint{
 	
 	private BodyReq bodyrequest;
 	
-	private static final String  API_KEY="";
+	private static final String  API_KEY="API_KEY";
 	
 	private  HttpResponse<String> response;
 	
