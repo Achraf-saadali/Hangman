@@ -28,6 +28,8 @@ public class HangmanTest {
 	    Loop:
 	    	while (true) {
 	    	    String m = WannaPlay(sc).toLowerCase();
+	    	    
+	    	   
 
 	    	    if (m.equals("y") || m.equals("yes")) {
 	    	        play(p1, sc);
@@ -60,6 +62,7 @@ public class HangmanTest {
 	public static void play(Person P,Scanner scan) {
 		P.setGame();
 		GameSession G = P.getGame();
+		boolean AnsweredHint=false;
 		
 		
 		
@@ -70,7 +73,7 @@ public class HangmanTest {
 		}
 		
 
-		while (G.getTrials_left() != -1) {
+		while (G.getTrials_left() != 0) {
 			
 			System.out.println("Guess The Word : (A Letter Or Full Word)");
 			System.out.println(G.getTheWord());
@@ -83,18 +86,21 @@ public class HangmanTest {
 				break;
 			}
 			
-			if(G.getTrials_left()<=2) {
+			if(!AnsweredHint && G.getTrials_left()<=2) {
 				System.out.println("Do you like a hint say yes if you want it ");
 				String HintAnswer=scan.nextLine().toLowerCase();
+				
 				if(HintAnswer.equals("yes")) {
-					System.out.println(" your hint is : "+G.getQuestionHint());
+					AnsweredHint=true;
+					System.out.println(G.getQuestionHintResponse());
 				}
 			}
 		}
 
-		if (G.getTrials_left() == -1) {
+		if (G.getTrials_left() == 0) {
 			System.out.println("Game Over: " + P.getFirst_Name() + " " + P.getLast_Name() + ", you have exhausted your trials and lost. your word was "+G.getWordToGuess());
 		}
+		System.out.println("TRIALS LEFT : "+G.getTrials_left());
 
 		
 	}

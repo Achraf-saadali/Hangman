@@ -10,7 +10,7 @@ public class BodyReq {
 	
 	
 	public BodyReq(String Word) {
-		model="deepseek/deepseek-r1:free";
+		model="deepseek/deepseek-chat:free";
 		
 		messages.add(new MessReq("user",Word));
 		
@@ -40,6 +40,7 @@ public class BodyReq {
 			
 			
 		}
+		
         @SuppressWarnings("unused")
 		public String getContent() {
 			return content;
@@ -48,6 +49,7 @@ public class BodyReq {
 		public void setContent(String content) {
 			this.content = content;
 		}
+		
 		@SuppressWarnings("unused")
 		public String getRole() {
 			return role;

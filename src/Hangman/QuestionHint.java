@@ -1,22 +1,36 @@
 package Hangman;
 
 import java.net.URI;
+
 import java.net.http.HttpClient;
+
 import java.net.http.HttpRequest;
+
 import java.net.http.HttpRequest.BodyPublishers;
+
 import java.net.http.HttpResponse;
 
 import com.google.gson.JsonArray;
 
 import com.google.gson.JsonObject;
+
 import com.google.gson.JsonParser;
 
+
 public class QuestionHint{
+	
 	private BodyReq bodyrequest;
 	
-	private static final String  API_KEY="Bearer API_KEY";
+	private static final String  API_KEY="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";
 	
-	private HttpResponse<String> response;
+	private  HttpResponse<String> response;
+	
+	private boolean Loading=true;
+	
+	private String wording="Loading.....";
+	
+	
+	
 	
 	
 	
@@ -34,26 +48,32 @@ public class QuestionHint{
 	
 	
 	public HttpResponse<String> sendPost()  {
-		
+		if(isLoading()) {
+			System.out.println(getWording());}
 		HttpClient client=HttpClient.newHttpClient();
 		
 		HttpRequest request=HttpRequest.newBuilder()
 				
 				.uri(URI.create("https://openrouter.ai/api/v1/chat/completions"))
 				
-				.header("Authorization", API_KEY)
+				.header("Authorization","Bearer "+API_KEY)
 				
 				.header("Content-Type", "application/json")
 				
 				.POST(BodyPublishers.ofString(bodyrequest.toString())).build();
 		
 		try 
-		{response=client.send(request, HttpResponse.BodyHandlers.ofString());}
+		{response=client.send(request, HttpResponse.BodyHandlers.ofString());
+		setLoading(false);}
 		catch(Exception e)
 		{
 		 System.err.println("An error has occured");
 			
 		}
+		if(!isLoading()) {
+			setWording("");
+		}
+		   
 		
 		return response;
 		
@@ -63,8 +83,8 @@ public class QuestionHint{
 		
 		
 		
-	}
 	
+	}
 	
 	public String toString() {
 		JsonObject responseJson = JsonParser.parseString(response.body()).getAsJsonObject();
@@ -81,6 +101,31 @@ public class QuestionHint{
 		
 	}
 
+
+
+	public boolean isLoading() {
+		return Loading;
+	}
+
+
+
+	public void setLoading(boolean loading) {
+		Loading = loading;
+	}
+
+
+
+	public String getWording() {
+		return wording;
+	}
+
+
+
+	public void setWording(String wording) {
+		this.wording = wording;
+	}
+	
+	
 
 
 	

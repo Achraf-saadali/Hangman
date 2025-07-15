@@ -56,11 +56,20 @@ public class GameSession {
 		int WordLine=rand.nextInt(0,All_Words.size());
 		
 		WordToGuess=All_Words.get(WordLine);
-		setTheWord(WordToGuess.length());}
+		setTheWordFormat(WordToGuess.length());}
 		
 	
 	
 	
+	private void setTheWordFormat(int length) {
+		 StringBuilder SB=new StringBuilder();
+		for(int i=0;i<length;i++) {
+			SB.append("-");
+			
+		}
+		TheWord=SB.toString();
+		
+	}
 	public int getId() {
 		return id;
 	}
@@ -75,79 +84,86 @@ public class GameSession {
 	}
 	
 	
-	public void setTheWord(int Length) {
-		StringBuilder sb= new StringBuilder();
-		for(int i=0;i<Length;i++) {
-			sb.append("-");}
-		TheWord=sb.toString();
+	public void setTheWord(String word) {
+		 TheWord=word;
 	}
-	
 	
 	 private boolean checkCompatbility(String PlayerWordGuess) {
 		
 		 return PlayerWordGuess.equals(WordToGuess); }
 	 
-	public void changeTheWord(String Tryout) {
-		boolean Letter_Guess=false;
-		
-		if(checkCompatbility(Tryout)) {
-			TheWord=Tryout;
-			System.out.println("The Game Has finished With success !!!,the word was : "+TheWord);
-			
-			setGame_WIN_Status(true);
-			
-			
-			return;}
-		
-		if(Tryout.length()!=1) {
-			System.out.println("Incorrect Guess ............ Another Foul ");
-			setTrials_left();
-			return;}
-		
-		
-		int n=WordToGuess.length();
-		char Try=Tryout.charAt(0);
-		
-		StringBuilder sb= new StringBuilder();
-		
-		for(int i=0;i<n;i++) {
-			char WordToGuess_Letter=WordToGuess.charAt(i);
-			char TheWord_Letter=TheWord.charAt(i);
-			
-			if(WordToGuess_Letter==Try) {
-				Letter_Guess=true;
-				sb.append(Tryout);}
-			
-			else {
-				sb.append(TheWord_Letter);
-			}
-			
-				}
-		
-		TheWord=sb.toString();
-		if(!TheWord.contains(Tryout)) {
-			setTrials_left();
-		}
-		if(!Letter_Guess)
-			{System.out.println("Wrong Guess.....");return;}
-		
-		if(checkCompatbility(TheWord)) {
-			
-			System.out.println("The Game Has finished With success !!!,the word was : "+TheWord);
-			
-			setGame_WIN_Status(true);
-			
-			
-			return;}
-		
-		System.out.println("You are at : "+TheWord);
-		
-		}
+	 
+	 
 	
 	
 	public boolean isGame_WIN_Status() {
 		return Game_WIN_Status;
 	}
+	 
+	 public void changeTheWord(String Input) {
+		 StringBuilder BuildGuessedWord= new StringBuilder(); 
+		  boolean Guess_Is_Right=false;
+		 if(Input.length()>1 || Input.length()==0) {
+
+               if(checkCompatbility(Input)) {
+            	   Game_WIN_Status=true;
+            	   Guess_Is_Right=true;
+            	   System.out.println("You have won");
+            	   return;
+              
+               }
+              
+		 
+		 }
+		 String GuessedWord=getTheWord();
+		 BuildGuessedWord.append(GuessedWord);
+		 if(GuessedWord.contains(Input))
+		 {Guess_Is_Right=true;System.out.println("Already Guessed Try again......");
+		 return;
+		 }
+		 
+		 if(getWordToGuess().contains(Input)) {
+			 Guess_Is_Right=true;
+			 
+			 char InputChar=Input.charAt(0);
+			 BuildGuessedWord.setCharAt(getWordToGuess().indexOf(Input), InputChar);
+			 setTheWord(BuildGuessedWord.toString());
+			 
+			 if(checkCompatbility(getTheWord())) {
+				 Game_WIN_Status=true;
+				 System.out.println("You have won");
+				 return;
+			 }
+			 System.out.println("Right Guess... continue");
+			 return;
+			 
+		 }
+		 
+		 
+		 
+		 if(!Guess_Is_Right) {
+			 setTrials_left(); 
+			 System.err.println("Wrong Guess.... Try again");
+			 System.out.println(getTrials_left());
+			 
+		 }
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+	 }
 	
 	
 	public void setGame_WIN_Status(boolean game_WIN_Status) {
@@ -160,13 +176,17 @@ public class GameSession {
 	public void setTrials_left() {
 		Trials_left -=1;
 	}
-	public String getQuestionHint() {
+	public String getQuestionHintResponse() {
 		return Questionhint+"";
 	}
 
 	
 	public void setQuestionhint(QuestionHint questionhint) {
 		Questionhint = questionhint;
+	}
+	
+	public QuestionHint getQuestionHint() {
+		return Questionhint;
 	}
 		
 			
