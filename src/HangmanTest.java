@@ -1,4 +1,4 @@
-package Hangman;
+
 
 import java.util.Scanner;
 
