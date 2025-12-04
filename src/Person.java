@@ -6,6 +6,7 @@ package Hangman;
  public class Person {
 	 private static int count;
 	 private int id;
+	 private int Games_Count=0;
 	
 	 private String First_Name;
 	 private String Last_Name;
@@ -49,7 +50,17 @@ package Hangman;
 	}
 	public void setGame() {
 		Game= new GameSession();
+		setGames_Count(Games_Count+1);
 		
+		
+	}
+
+	public int getGames_Count() {
+		return Games_Count;
+	}
+
+	private void setGames_Count(int games_Count) {
+		Games_Count = games_Count;
 	}
 	 
 
