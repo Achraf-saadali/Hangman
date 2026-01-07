@@ -5,9 +5,12 @@ public class HangmanTest {
     public static void main(String[] args)
     {
         GameSession gameSession = new GameSession();
+        Game game = gameSession.getGame();
+        QuestionHint q1 = new QuestionHint(game.getWordToGuess());
+        q1.start();
 
         try(Scanner sc = new Scanner(System.in)){
-            Game game = gameSession.getGame();
+
 
             while(game.getGameStatus()== GameStatus.PENDING){
                 System.out.print("Enter only A letter (Not a chain of letters) : ");
@@ -18,6 +21,11 @@ public class HangmanTest {
 
                 System.out.println(game.drawGame(letter));
 
+                if(game.getCurrentFalseTrials() == 3)
+                {
+                    System.out.println("Your Hint is : "+q1.getTheHint());
+                }
+
 
 
 
@@ -25,11 +33,17 @@ public class HangmanTest {
 
 
             }
-            if(game.getGameStatus() == GameStatus.WON)
+            if(game.getGameStatus() == GameStatus.WON) {
+                System.out.println(game.getPlayerCurrentGuess());
                 System.out.println("You have Won !!!");
+            }
             else{
                 System.out.println("You have Lost !!!");
+                System.out.println("your word was : "+game.getWordToGuess());
             }
+        }catch(Exception ex)
+        {
+            System.out.println("An error occured "+ex);
         }
 
 
