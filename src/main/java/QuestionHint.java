@@ -21,7 +21,7 @@ public class QuestionHint extends Thread {
         return theHint;
     }
 
-    private volatile String theHint ;
+    private  String theHint ;
     private final static String API_KEY =  (Dotenv.load()).get("API_KEY");
 
     private static String extractContent(String content)
